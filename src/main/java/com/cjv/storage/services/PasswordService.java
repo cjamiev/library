@@ -53,10 +53,11 @@ public class PasswordService {
 
     public int updatePassword(Password password) {
         EncryptAndDecrypt passwordEncryptor = new EncryptAndDecrypt(configProperties.getSecretkey());
-        String sql = "UPDATE public.password SET password=?, url=?, created_date=?, tags=?, history=? WHERE id = ?;";
+        String sql = "UPDATE public.password SET username=?, password=?, url=?, created_date=?, tags=?, history=? WHERE id = ?;";
 
         return jdbcTemplate.update(
                 sql,
+                password.getUsername(),
                 passwordEncryptor.encrypt(password.getPassword()),
                 password.getUrl(),
                 password.getCreatedDate(),
