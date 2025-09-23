@@ -15,8 +15,9 @@ public class Password {
     private String createdDate;
     private String tags;
     private String history;
+    private String notes;
 
-    public Password(String id, String username, String password, String url, String createdDate, String tags, String history) {
+    public Password(String id, String username, String password, String url, String createdDate, String tags, String history, String notes) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -24,10 +25,11 @@ public class Password {
         this.createdDate = createdDate;
         this.tags = tags;
         this.history = history;
+        this.notes = notes;
     }
 
     public static Password getEmptyPassword() {
-        return new Password("", "", "", "", "", "", "");
+        return new Password("", "", "", "", "", "", "", "");
     }
 
     public String getId() {
@@ -86,6 +88,14 @@ public class Password {
         this.history = history;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public String toString() {
         return "{\"id\": \"" + id
@@ -95,6 +105,7 @@ public class Password {
                 + "\", \"createdDate\":\"" + createdDate
                 + "\", \"tags\":\"" + tags
                 + "\", \"history\":\"" + history
+                + "\", \"notes\":\"" + notes
                 + "\"}";
     }
 }

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public.password
     created_date character varying(30) COLLATE pg_catalog."default" NOT NULL,
     tags text COLLATE pg_catalog."default",
     history text COLLATE pg_catalog."default",
+    notes text COLLATE pg_catalog."default",
     CONSTRAINT password_pkey PRIMARY KEY (id)
 )
 
@@ -21,10 +22,10 @@ DROP TABLE IF EXISTS public.password;
 
 -- Insert into Table
 INSERT INTO public.password(
-	id, username, password, url, created_date, tags, history)
-	VALUES ('', '', '', '', '', '', '');
+	id, username, password, url, created_date, tags, history, notes)
+	VALUES ('', '', '', '', '', '', '', '');
 
 -- Update Row
 UPDATE public.password
-	SET password=?, url=?, created_date=?, tags=?, history=?
+	SET username=?, password=?, url=?, created_date=?, tags=?, history=?, notes=?
 	WHERE id = '';

@@ -36,8 +36,9 @@ public class PasswordRowMapper implements RowMapper<Password> {
         String tags = rs.getString("tags");
         String encryptedHistory = rs.getString("history");
         String history = getCorrectString(encryptedHistory);
+        String notes = rs.getString("notes");
 
-        return new Password(id, username, password, url, createdDate, tags, history);
+        return new Password(id, username, password, url, createdDate, tags, history, notes);
     }
 }
 

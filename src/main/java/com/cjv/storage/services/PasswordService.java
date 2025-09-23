@@ -37,7 +37,7 @@ public class PasswordService {
 
     public int addNewPassword(Password password) {
         EncryptAndDecrypt passwordEncryptor = new EncryptAndDecrypt(configProperties.getSecretkey());
-        String sql = "INSERT INTO public.password(id, username, password, url, created_date, tags, history) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO public.password(id, username, password, url, created_date, tags, history, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         return jdbcTemplate.update(
                 sql,
@@ -47,13 +47,14 @@ public class PasswordService {
                 password.getUrl(),
                 password.getCreatedDate(),
                 password.getTags(),
-                passwordEncryptor.encrypt(password.getHistory())
+                passwordEncryptor.encrypt(password.getHistory()),
+                password.getNotes()
         );
     }
 
     public int updatePassword(Password password) {
         EncryptAndDecrypt passwordEncryptor = new EncryptAndDecrypt(configProperties.getSecretkey());
-        String sql = "UPDATE public.password SET username=?, password=?, url=?, created_date=?, tags=?, history=? WHERE id = ?;";
+        String sql = "UPDATE public.password SET username=?, password=?, url=?, created_date=?, tags=?, history=?, notes=? WHERE id = ?;";
 
         return jdbcTemplate.update(
                 sql,
@@ -63,6 +64,7 @@ public class PasswordService {
                 password.getCreatedDate(),
                 password.getTags(),
                 passwordEncryptor.encrypt(password.getHistory()),
+                password.getNotes(),
                 password.getId()
         );
     }
